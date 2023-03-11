@@ -1,4 +1,6 @@
 <?php
+    // includes
+    require_once 'utils/function_library.php';
     $stateDropdown = array(
         'Connecticut' => 'Connecticut',
         'New York' => 'New York',
@@ -22,6 +24,9 @@
         'Royal Caribbean' => 'Royal Caribbean',
         'Disney Cruises' => 'Disney Cruises'
     );
+    asort($stateDropdown);
+    asort($destinationDropdown);
+    asort($cruiselineDropdown);
 
 ?>
 <!DOCTYPE html>
@@ -100,13 +105,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="state">State</label>
-                        <select class="custom-select d-block w-100" name="state" id="state" required>
-                            <?php
-                                foreach($stateDropdown as $value => $name) {
-                                    echo "<option value='$value'>$name</option>";
-                                }
-                            ?>
-                        </select>
+                        <?=buildDropDown($stateDropdown, true, '', 'custom-select d-block w-100', 'state', '', true);?>
                         <div class="invalid-feedback">
                         Please provide a valid state.
                         </div>
@@ -123,26 +122,14 @@
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label for="preferredDestination">Preferred Destination</label>
-                    <select class="custom-select d-block w-100" name="preferredDestination" id="preferredDestination" required>
-                        <?php
-                            foreach($destinationDropdown as $value => $name) {
-                                echo "<option value='$value'>$name</option>";
-                            }
-                        ?>
-                    </select>
+                    <?=buildDropDown($destinationDropdown, true, '', 'custom-select d-block w-100', 'destination', '', true);?>
                     <div class="invalid-feedback">
                     Please provide a valid destination.
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="preferredCruiseLine">Preferred Cruise Line</label>
-                    <select class="custom-select d-block w-100" name="preferredCruiseLine" id="preferredDestination" required>
-                        <?php
-                            foreach($cruiselineDropdown as $value => $name) {
-                                echo "<option value='$value'>$name</option>";
-                            }
-                        ?>
-                    </select>
+                    <?=buildDropDown($cruiselineDropdown, true, '', 'custom-select d-block w-100', 'cruiseline', '', true);?>
                     <div class="invalid-feedback">
                     Please provide a valid destination.
                     </div>
