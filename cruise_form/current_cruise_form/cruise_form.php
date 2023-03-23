@@ -2,30 +2,12 @@
     // includes
     require_once 'utils/function_library.php';
     require_once 'utils/data_layer.php';
+    require_once 'utils/form_validation.php';
 
     // Retrieve data from data layer
     $stateDropdown = getStates();
     $destinationDropdown = getDestinations();
     $cruiselineDropdown = getCruiselines();
-    // Form business logic
-    $showForm = true; // Control whether or not the contest form should be displayed
-
-    // Check to see if we're in a post
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
-        $showForm = false;
-        // var_dump($_POST);
-
-        // set variables to each of the form elements
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
-
-        echo "<h2>Thank you $firstName $lastName. We've received your information below.</h2>";
-
-        foreach($_POST as $key => $value) {
-            echo "<li> $key: $value </li>";
-        }
-    }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +32,7 @@
         <div class="row">
             <div class="col-md-12 order-md-1">
             <h4 class="mb-3">Your information</h4>
-            <form class="needs-validation" method="post" action="<?=$_SERVER['PHP_SELF']?>">
+            <form class="needs-validation" method="post" action="<?=$_SERVER['PHP_SELF']?>" <?php if ($disableClientSideValidation) echo 'novalidate'?>>    
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
