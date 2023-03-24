@@ -5,9 +5,9 @@
     require_once 'utils/form_validation.php';
 
     // Retrieve data from data layer
-    $stateDropdown = getStates();
-    $destinationDropdown = getDestinations();
-    $cruiselineDropdown = getCruiselines();
+    $stateArray = getStates();
+    $destinationArray = getDestinations();
+    $cruiselineArray = getCruiselines();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +36,14 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
-                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value="" required>
+                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value="<?php echo $firstName; ?>" required>
                         <div class="invalid-feedback">
                         Valid first name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value="" required>
+                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value="<?php echo $lastName; ?>" required>
                         <div class="invalid-feedback">
                         Valid last name is required.
                         </div>
@@ -52,14 +52,14 @@
                     <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com" value="<?php echo $email; ?>">
                         <div class="invalid-feedback">
                             Please enter a valid email address.
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="confirmEmail">Confirm Email <span class="text-muted">(Optional)</span></label>
-                        <input type="email" class="form-control" name="confirmEmail" id="confirmEmail" placeholder="you@example.com">
+                        <label for="verifyEmail">Confirm Email <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" name="verifyEmail" id="verifyEmail" placeholder="you@example.com" value="<?php echo $verifyEmail; ?>">
                         <div class="invalid-feedback">
                             Please enter a valid email address.
                         </div>
@@ -68,7 +68,7 @@
 
                     <div class="mb-3">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St" required>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St" value="<?php echo $address; ?>" required>
                         <div class="invalid-feedback">
                             Please enter your address.
                         </div>
@@ -76,27 +76,27 @@
 
                     <div class="mb-3">
                         <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                        <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite">
+                        <input type="text" class="form-control" name="address2" id="address2" placeholder="Apartment or suite" value="<?php echo $address2; ?>">
                     </div>
 
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="city">City</label>
-                            <input type="text" class="form-control" name="city" id="city" placeholder="" required>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="" value="<?php echo $city; ?>" required>
                             <div class="invalid-feedback">
                             City code required.
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="state">State</label>
-                            <?=buildDropDown($stateDropdown, true, '', 'custom-select d-block w-100', 'state', '', true);?>
+                            <?=buildDropDown($stateArray, true, '', 'custom-select d-block w-100', 'state', '', true, $state);?>
                             <div class="invalid-feedback">
                             Please provide a valid state.
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="zip">Zip</label>
-                            <input type="text" class="form-control" name="zip" id="zip" placeholder="" required>
+                            <input type="text" class="form-control" name="zip" id="zip" placeholder="" value="<?php echo $zip; ?>" required>
                             <div class="invalid-feedback">
                             Zip code required.
                         </div>
@@ -106,14 +106,18 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="preferredDestination">Preferred Destination</label>
-                        <?=buildDropDown($destinationDropdown, true, '', 'custom-select d-block w-100', 'destination', '', true);?>
+                        <select class='custom-select d-block w-100' name="preferredDestination" id="preferredDestination">
+                            <?= generateHTMLDropDownList($destinationArray, true, '', $preferredDestination)?>
+                        </select>
                         <div class="invalid-feedback">
                         Please provide a valid destination.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="preferredCruiseLine">Preferred Cruise Line</label>
-                        <?=buildDropDown($cruiselineDropdown, true, '', 'custom-select d-block w-100', 'cruiseline', '', true);?>
+                        <label for="preferredCruiseline">Preferred Cruise Line</label>
+                        <select class='custom-select d-block w-100' name="preferredCruiseline" id="preferredCruiseline">
+                            <?= generateHTMLDropDownList($cruiselineArray, true, '', $preferredCruiseline)?>
+                        </select>
                         <div class="invalid-feedback">
                         Please provide a valid destination.
                         </div>
