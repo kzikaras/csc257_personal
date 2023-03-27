@@ -73,3 +73,11 @@ function buildDropDown($dataArray, $addDefaultSelection=true, $customSelectMessa
     // Return the select tag
     return $html;
 }
+
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
