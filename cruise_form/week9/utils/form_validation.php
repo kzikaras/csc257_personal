@@ -1,6 +1,5 @@
 <?php
 require_once "function_library.php";
-require_once "data_layer.php";
 
 // This will hold all the form business logic (stickiness and validation) for the cruise form
 
@@ -132,8 +131,6 @@ if ($isProcessingForm) {
     $showForm = false;
 
     // This is where we store data in the database!!
-    $sql = "INSERT INTO `registration` (`first_name`, `last_name`, `email`, `address`) VALUES ('$firstName', '$lastName', '$email', '$address');";
-    queryDatabase($sql);
   }
 
 }

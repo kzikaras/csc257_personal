@@ -1,0 +1,42 @@
+
+#outerContainer {
+    border: 1px solid grey;
+    width: 600px;
+    padding: 1px;
+}
+.form-label {
+    display: inline-block;
+    font-size: 22px;
+    width: 260px;
+}
+.form-textbox {
+    font-size: 20px;
+    width: 250px;
+    margin-bottom: 5px;
+}
+.form-dropdown {
+    font-size: 20px;
+    width: 250px;
+    margin-bottom: 5px;
+}
+#submitButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.requiredIndicator {
+    color: red;
+}
+.requiredHighlight {
+    background-color: #ffff009b;
+}
+.checkbox-requiredHighlight {
+    border: 1px solid #ff0d009b;
+    padding: 2px;
+}
