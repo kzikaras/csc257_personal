@@ -31,7 +31,7 @@ function generateHTMLDropDownList($dataArray, $addDefaultSelection=true, $custom
     }
     foreach($dataArray as $id => $name) {
         $selectedAttribute = ''; // Selected HTML attribute string
-        if ($id === $selectedId) {
+        if ($id == $selectedId) {
             $selectedAttribute = 'selected';
         }
         // $selectedAttribute = $id === $selectedId ? "selected" : "";

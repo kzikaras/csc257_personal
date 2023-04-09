@@ -130,10 +130,21 @@ if ($isProcessingForm) {
   // This means that the form has passed all validation rules
   if ($isFormValid) {
     $showForm = false;
-
-    // This is where we store data in the database!!
-    $sql = "INSERT INTO `registration` (`first_name`, `last_name`, `email`, `address`) VALUES ('$firstName', '$lastName', '$email', '$address');";
-    queryDatabase($sql);
+    $emailExists = false;
+    // Check to see if the email has already been submitted
+    $sql = "SELECT * FROM `registration` WHERE email = '$email'";
+    $results = queryDatabase($sql);
+    // If the number of rows is > 0 it means that a recorrd for the same email already exists
+    if (mysqli_num_rows($results) > 0) {
+      $emailExists = true;
+    } else {
+      // This is where we store data in the database!!
+      $sql = "INSERT INTO `registration` 
+        (`first_name`, `last_name`, `email`, `address`, `address2`, `city`, `zip`, `state`, `destination`, `cruiseline`) 
+      VALUES 
+        ('$firstName', '$lastName', '$email', '$address', '$address2', '$city', '$zip', '$state', '$preferredDestination', '$preferredCruiseline');";
+      queryDatabase($sql);
+    }
   }
 
 }

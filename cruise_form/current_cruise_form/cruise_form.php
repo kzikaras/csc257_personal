@@ -158,24 +158,31 @@ $cruiseLineArray = getCruiseLines();
 
 <?php 
     } else {
+      if ($emailExists) {
+        echo "There is already an email registered with this event.";
+      } else {
+        // Create user-friendly names
+        $stateName = $stateArray[$state]; // $state holds the value state_id from the database
+        $destinationName = $destinationArray[$preferredDestination]; // $preferredDestination holds the id
+        $cruiselineName = $cruiseLineArray[$preferredCruiseline]; // $preferredCruiseline holds the id
+        // Third add a message
+        echo "Thank you $firstName, we have received your submission with the following information:<br><br>";
+        echo "Name: $firstName $lastName<br>";
+        echo "E-mail: $email<br>";  
+        echo "<br>";
+        echo "Address:<br>";
+        echo "$address<br>";
+        if ($address2) { 
+            echo "$address2<br>";
+        }
+        echo "$city, $stateName $zip<br>";
+        echo "<br>";
+        echo "Preferred destination: $destinationName<br>";
+        echo "Preferred cruise line: $cruiselineName<br>";
+        echo "<br><br>Good luck!<br>";
 
-    // Third add a message
-    echo "Thank you $firstName, we have received your submission with the following information:<br><br>";
-    echo "Name: $firstName $lastName<br>";
-    echo "E-mail: $email<br>";  
-    echo "<br>";
-    echo "Address:<br>";
-    echo "$address<br>";
-    if ($address2) { 
-        echo "$address2<br>";
-    }
-    echo "$city, $state $zip<br>";
-    echo "<br>";
-    echo "Preferred destination: $preferredDestination<br>";
-    echo "Preferred cruise line: $preferredCruiseline<br>";
-    echo "<br><br>Good luck!<br>";
-
-    } // End showform test 
+        } // End showform test 
+      }
 ?>
 
 <?php include "includes/footer.php"; ?>
