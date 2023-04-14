@@ -11,8 +11,22 @@ function queryDatabase($sql) {
     $db = 'csc257';
     // create a connection 
     $conn = new mysqli($serverName, $userName, $password, $db, $port);
+
+    // Add error handling for connection
+    if ($conn->connect_errno) {
+        echo "Failed to connect to MySql: " . $conn->connect_error;
+        exit();
+    }
+
     // Get results
     $results = $conn->query($sql);
+
+    if (!$results) {
+        echo "Error description:" . $conn->error;
+        exit();
+    }
+    // Close the connection
+    $conn->close();
     // return the results
     return $results; 
 }
