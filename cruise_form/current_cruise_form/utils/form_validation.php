@@ -13,7 +13,7 @@ $isProcessingForm = false;                // Flag for determining if we are in t
 $isFormValid = true;                     // Assume the form is valid unless we find otherwise
 
 // Validation variables
-$isFirstNameValid = true;
+$isFirstNameValid = true; 
 $isLastNameValid = true;
 $isEmailValid = true;
 $isVerifyEmailValid = true;
@@ -140,7 +140,7 @@ if ($isProcessingForm) {
     } else {
       // This is where we store data in the database!!
       $sql = "INSERT INTO `registration` 
-        (`first_name`, `last_name`, `email`, `address`, `address2`, `city`, `zip`, `state`, `destination`, `cruiseline`) 
+        (`first_name`, `last_name`, `email`, `address`, `address2`, `city`, `zip`, `state_id`, `destination_id`, `cruiseline_id`) 
       VALUES 
         ('$firstName', '$lastName', '$email', '$address', '$address2', '$city', '$zip', '$state', '$preferredDestination', '$preferredCruiseline');";
       queryDatabase($sql);
